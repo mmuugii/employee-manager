@@ -1,6 +1,9 @@
-const express = require('express');
+const inquirer = require('inquirer');
 // Imported and required mysql2 package
 const mysql = require('mysql2');
+const consoleTable = require('console.table');
+const express = require('express');
+
 // set up our server listener
 const PORT = process.env.PORT || 3001;
 const app = express();
