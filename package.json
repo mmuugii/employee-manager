@@ -2,7 +2,7 @@
   "name": "employee-manager",
   "version": "1.0.0",
   "description": "This application is meant to use the CLI to manage employees at a company.",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"

@@ -1,5 +1,7 @@
 const inquirer = require('inquirer');
-const connection = require('./connection.js');
+const selections = require('./connection.js');
+
+// console.log(selections);
 
 // command line prompts
 const commandPrompts = async () => {
@@ -7,7 +9,7 @@ const commandPrompts = async () => {
         const questions = [
             {
                 type: "list",
-                name: "actions",
+                name: "choice",
                 message: "Please indicate what you would like to do",
                 choices: [
                     "View All Employees",
@@ -21,32 +23,33 @@ const commandPrompts = async () => {
                 ],
             },
         ];
-        // actions (functions) to selects from when the user selects each option
-        const userAnswer = await inquirer.createPromptModule(commandPrompts);
-        switch (userAnswer.action) {
+        // call to function depending on what the user selects
+        const userAnswer = await inquirer.prompt(questions);
+        console.log(userAnswer);
+        switch (userAnswer.choice) {
             case "View All Employees":
-                const employeeList = await actions.showEmployees();
+                const employeeList = await selections.showEmployees();
                 console.table(employeeList);
                 break;
+                case "View All Roles":
+                    const allRoleList = await selections.viewAllRoles();
+                    console.table(allRoleList);
+                    break;
+                case "View All Departments":
+                    const departmentsList = await selections.showDepartments();
+                    console.table(departmentsList);
+                    break;
             case "Add Employee":
-                await actions.addEmployee();
+                await selections.addEmployee();
                 break;
             case "Update Employee Role":
-                await actions.updateEmployeeRole();
-                break;
-            case "View All Roles":
-                const allRoleList = await actions.viewAllRoles();
-                console.table(allRoleList);
+                await selections.updateEmployeeRole();
                 break;
             case "Add Role":
-                await actions.addRole();
-                break;
-            case "View All Departments":
-                const departmentsList = await actions.showDepartments();
-                console.table(departmentsList);
+                await selections.addRole();
                 break;
             case "Add Department":
-                await actions.addDepartment();
+                await selections.addDepartment();
                 break;
             case "Quit":
                 process.exit();
