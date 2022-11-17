@@ -1,3 +1,7 @@
+// Created on November 16, 2022 by Muugii Munkhbold
+// This index file is the first file that initializes the inquirer prompt when the user boots it up
+// worked with tutor J. Delgado
+
 const inquirer = require('inquirer');
 const selections = require('./connection.js');
 
